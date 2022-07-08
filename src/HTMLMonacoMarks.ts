@@ -55,11 +55,11 @@ export class HTMLMonacoMarks {
     constructor(html: string, ruleset: Ruleset = defaultRuleset) {
         this.html = html;
         this.ruleset = ruleset;
-        this.lintedResponse = this.lint(html, ruleset);
+        this.lintedResponse = this.lint();
     }
 
-    public lint(html: string, ruleset: Ruleset = defaultRuleset): Hint[] {
-        return HTMLHint.verify(html, ruleset);
+    public lint(): Hint[] {
+        return HTMLHint.verify(this.html, this.ruleset);
     }
 
     public getEditorMarks(monaco: Monaco): IMarkerData[] {
