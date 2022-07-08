@@ -50,12 +50,12 @@ const defaultRuleset: Ruleset = {
 export class HTMLMonacoMarks {
     protected html: string;
     protected ruleset: Ruleset;
-    protected lintedResponse: Hint[];
+    protected linterResponse: Hint[];
 
     constructor(html: string, ruleset: Ruleset = defaultRuleset) {
         this.html = html;
         this.ruleset = ruleset;
-        this.lintedResponse = this.lint();
+        this.linterResponse = this.lint();
     }
 
     public lint(): Hint[] {
@@ -63,7 +63,7 @@ export class HTMLMonacoMarks {
     }
 
     public getEditorMarks(monaco: Monaco): IMarkerData[] {
-        return this.lintedResponse.map((issue) => ({
+        return this.linterResponse.map((issue) => ({
             startLineNumber: issue.line,
             startColumn: issue.col,
             endLineNumber: issue.line,
@@ -73,7 +73,7 @@ export class HTMLMonacoMarks {
         }));
     }
 
-    public getLintedResponse(): Hint[] {
-        return this.lintedResponse;
+    public getLinterResponse(): Hint[] {
+        return this.linterResponse;
     }
 }

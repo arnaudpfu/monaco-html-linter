@@ -26,11 +26,11 @@ interface IMarkerData {
 }
 export declare class HTMLMonacoMarks {
     protected html: string;
-    protected ruleset: Ruleset;
+    protected rinterResponseet;
     protected lintedResponse: Hint[];
     constructor(html: string, ruleset?: Ruleset);
     lint(): Hint[];
-    getEditorMarks(monaco: Monaco): IMarkerData[];
+    getEinterResponsenaco: Monaco): IMarkerData[];
     getLintedResponse(): Hint[];
 }
 export {};
