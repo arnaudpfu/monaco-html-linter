@@ -1,5 +1,5 @@
 # Monaco HTML Linter
-Simple HTML Linter for the Monaco Editor.
+Monaco HTML Linter is a simple HTML Linter plugin for the [Monaco Editor](https://microsoft.github.io/monaco-editor/). It uses [HTMLHint](https://htmlhint.com/) to verify HTML Code.
 
 ## Installation
 

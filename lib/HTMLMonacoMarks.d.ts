@@ -1,5 +1,6 @@
+import monaco, { MarkerSeverity, MarkerTag, Uri } from 'monaco-editor';
 import { Hint, Ruleset } from 'htmlhint/types';
-import { MarkerSeverity, MarkerTag, Uri } from 'monaco-editor';
+declare type Monaco = typeof monaco;
 interface IRelatedInformation {
     resource: Uri;
     message: string;
@@ -28,8 +29,8 @@ export declare class HTMLMonacoMarks {
     protected ruleset: Ruleset;
     protected lintedResponse: Hint[];
     constructor(html: string, ruleset?: Ruleset);
-    lint(html: string, ruleset?: Ruleset): Hint[];
-    getEditorMarks(monaco: any): IMarkerData[];
+    lint(): Hint[];
+    getEditorMarks(monaco: Monaco): IMarkerData[];
     getLintedResponse(): Hint[];
 }
 export {};
