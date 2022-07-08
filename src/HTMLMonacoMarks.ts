@@ -1,7 +1,11 @@
+import monaco, { editor, MarkerSeverity, MarkerTag, Uri } from 'monaco-editor';
 import { HTMLHint } from 'htmlhint';
-import { Hint, Ruleset } from 'htmlhint/types';
-import { editor, MarkerSeverity, MarkerTag, Uri } from 'monaco-editor';
+import { Hint, ReportType, Ruleset } from 'htmlhint/types';
 import { capitalize } from './utils';
+
+type Monaco = typeof monaco;
+
+type MarkerSeveritySlug = 'Info' | 'Warning' | 'Error';
 
 interface IRelatedInformation {
     resource: Uri;
@@ -58,14 +62,14 @@ export class HTMLMonacoMarks {
         return HTMLHint.verify(html, ruleset);
     }
 
-    public getEditorMarks(monaco: any): IMarkerData[] {
+    public getEditorMarks(monaco: Monaco): IMarkerData[] {
         return this.lintedResponse.map((issue) => ({
             startLineNumber: issue.line,
             startColumn: issue.col,
             endLineNumber: issue.line,
             endColumn: issue.col + issue.evidence.length,
             message: issue.message,
-            severity: monaco.MarkerSeverity[capitalize(issue.type)],
+            severity: monaco.MarkerSeverity[capitalize(issue.type) as MarkerSeveritySlug],
         }));
     }
 

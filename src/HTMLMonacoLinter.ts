@@ -1,11 +1,13 @@
-import { editor } from 'monaco-editor';
+import monaco, { editor } from 'monaco-editor';
 import { HTMLMonacoMarks } from './HTMLMonacoMarks';
+
+type Monaco = typeof monaco;
 
 export class HTMLMonacoLinter {
     protected editor: editor.IStandaloneCodeEditor;
-    protected monaco: any;
+    protected monaco: Monaco;
 
-    constructor(editor: editor.IStandaloneCodeEditor, monaco: any) {
+    constructor(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
         this.editor = editor;
         this.monaco = monaco;
     }
@@ -16,7 +18,11 @@ export class HTMLMonacoLinter {
         if (languageID === 'html') {
             const monacoLinter = new HTMLMonacoMarks(code);
             const issues = monacoLinter.getEditorMarks(this.monaco);
-            this.monaco.editor.setModelMarkers(this.editor.getModel(), 'owner', issues);
+            const model = this.editor.getModel();
+            if (model === null) {
+                throw new Error("Your model still does't exist.");
+            }
+            this.monaco.editor.setModelMarkers(model, 'owner', issues);
         }
     }
 
