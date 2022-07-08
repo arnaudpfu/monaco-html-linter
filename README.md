@@ -1,5 +1,5 @@
 # Monaco HTML Linter
-Monaco HTML Linter is a simple HTML Linter plugin for the [Monaco Editor](https://microsoft.github.io/monaco-editor/). It uses [HTMLHint](https://htmlhint.com/) to verify HTML Code.
+Monaco HTML Linter is a simple HTML Linter plugin for the [Monaco Editor](https://microsoft.github.io/monaco-editor/). It uses [HTMLHint](https://htmlhint.com/) under the hood to verify HTML Code.
 
 ## Installation
 
@@ -27,6 +27,47 @@ const linter = new HTMLMonacoLinter(editor, monaco);
 linter.watch();
 
 ```
+
+You can get the linter response in this way :
+```ts
+import { HTMLMonacoMarks } from 'monaco-html-linter';
+
+//...
+
+const htmlCode = editor.getValue();
+const report = new HTMLMonacoMarks(htmlCode);
+const response = report.getLinterResponse();
+
+```
+
+## API
+
+### Class: `HTMLMonacoLinter(editor: editor.IStandaloneCodeEditor, monaco: Monaco, ruleset?: Ruleset)`
+
+#### Attributes
+
+- `editor: editor.IStandaloneCodeEditor` The object returned when you create an editor.
+- `monaco: typeof monaco` The monaco variable.
+- `ruleset?: Ruleset` HTMLHint ruleset options.
+
+#### Methods
+
+- `lint` () => void: Lint one time the `editor`.
+- `watch` () => void: Lint the `editor` each time the `onChange` event is triggered.
+
+### Class: `HTMLMonacoMarks(html: string, ruleset: Ruleset = defaultRuleset)`
+
+#### Attributes
+
+- `html: string` The codoe to verify.
+- `ruleset: Ruleset` HTMLHint ruleset options.
+- `linterResponse: Hint[]` Value returned by HTMLHint.
+
+#### Methods
+
+- `getEditorMarks(monaco: Monaco): IMarkerData[]` Return the monaco markers.
+- `getLinterResponse(): Hint[]`
+- `lint(): Hint[]`
 
 ## License
 
