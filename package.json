@@ -1,0 +1,38 @@
+{
+  "name": "monaco-html-linter",
+  "version": "1.0.0",
+  "description": "Simple HTML Linter for the Monaco Editor.",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnaudpfu/monaco-html-linter.git"
+  },
+  "keywords": [
+    "HTML",
+    "Linter",
+    "Monaco",
+    "Editor",
+    "HTMLHint"
+  ],
+  "author": "Arnaud Pfundstein",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arnaudpfu/monaco-html-linter/issues"
+  },
+  "homepage": "https://github.com/arnaudpfu/monaco-html-linter#readme",
+  "dependencies": {
+    "htmlhint": "^1.1.4",
+    "monaco-editor": "^0.33.0"
+  },
+  "devDependencies": {
+    "@types/htmlhint": "^1.1.2",
+    "typescript": "^4.7.4"
+  }
+}
