@@ -1,6 +1,6 @@
-import monaco, { editor, MarkerSeverity, MarkerTag, Uri } from 'monaco-editor';
+import monaco, { MarkerSeverity, MarkerTag, Uri } from 'monaco-editor';
 import { HTMLHint } from 'htmlhint';
-import { Hint, ReportType, Ruleset } from 'htmlhint/types';
+import { Hint, Ruleset } from 'htmlhint/types';
 import { capitalize } from './utils';
 
 type Monaco = typeof monaco;
