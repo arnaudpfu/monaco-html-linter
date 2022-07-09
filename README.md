@@ -71,4 +71,4 @@ const response = report.getLinterResponse();
 
 ## License
 
-MIT, see the [LICENSE](/LICENSE.md) file for detail.
+MIT, see the [LICENSE](./LICENSE) file for detail.
