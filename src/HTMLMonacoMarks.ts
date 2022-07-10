@@ -1,4 +1,4 @@
-import monaco, { MarkerSeverity, MarkerTag, Uri } from 'monaco-editor';
+import monaco, { editor } from 'monaco-editor';
 import { HTMLHint } from 'htmlhint';
 import { Hint, Ruleset } from 'htmlhint/types';
 import { capitalize } from './utils';
@@ -6,33 +6,6 @@ import { capitalize } from './utils';
 type Monaco = typeof monaco;
 
 type MarkerSeveritySlug = 'Info' | 'Warning' | 'Error';
-
-interface IRelatedInformation {
-    resource: Uri;
-    message: string;
-    startLineNumber: number;
-    startColumn: number;
-    endLineNumber: number;
-    endColumn: number;
-}
-
-interface IMarkerData {
-    code?:
-        | string
-        | {
-              value: string;
-              target: Uri;
-          };
-    severity: MarkerSeverity; // Hint | Info | Warning | Error
-    message: string;
-    source?: string;
-    startLineNumber: number;
-    startColumn: number;
-    endLineNumber: number;
-    endColumn: number;
-    relatedInformation?: IRelatedInformation[];
-    tags?: MarkerTag[];
-}
 
 const defaultRuleset: Ruleset = {
     'tagname-lowercase': true,
@@ -62,7 +35,7 @@ export class HTMLMonacoMarks {
         return HTMLHint.verify(this.html, this.ruleset);
     }
 
-    public getEditorMarks(monaco: Monaco): IMarkerData[] {
+    public getEditorMarks(monaco: Monaco): editor.IMarkerData[] {
         return this.linterResponse.map((issue) => ({
             startLineNumber: issue.line,
             startColumn: issue.col,
