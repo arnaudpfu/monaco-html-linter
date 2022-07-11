@@ -42,14 +42,13 @@ const response = report.getLinterResponse();
 
 ## API
 
-### Class: `HTMLMonacoLinter(editor: editor.IStandaloneCodeEditor, monaco: Monaco, ruleset?: Ruleset, model?: editor.ITextModel)`
+### Class: `HTMLMonacoLinter(editor: editor.IStandaloneCodeEditor, monaco: Monaco, ruleset?: Ruleset)`
 
 #### Attributes
 
 - `editor: editor.IStandaloneCodeEditor` The object returned when you create an editor.
 - `monaco: typeof monaco` The monaco variable.
 - `ruleset?: Ruleset` HTMLHint ruleset [options](https://htmlhint.com/docs/user-guide/list-rules).
-- `model?: editor.ITextModel`
 
 #### Methods
 
