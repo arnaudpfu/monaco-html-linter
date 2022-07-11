@@ -5,7 +5,8 @@ export declare class HTMLMonacoLinter {
     protected editor: editor.IStandaloneCodeEditor;
     protected monaco: Monaco;
     protected ruleset?: Ruleset;
-    constructor(editor: editor.IStandaloneCodeEditor, monaco: Monaco, ruleset?: Ruleset);
+    protected model?: editor.ITextModel;
+    constructor(editor: editor.IStandaloneCodeEditor, monaco: Monaco, ruleset?: Ruleset, model?: editor.ITextModel);
     lint(): void;
     watch(): void;
 }
