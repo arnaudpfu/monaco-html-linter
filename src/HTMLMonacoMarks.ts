@@ -24,11 +24,13 @@ export class HTMLMonacoMarks {
     protected html: string;
     protected ruleset: Ruleset;
     protected linterResponse: Hint[];
+    protected model?: editor.ITextModel;
 
-    constructor(html: string, ruleset: Ruleset = defaultRuleset) {
+    constructor(html: string, ruleset: Ruleset = defaultRuleset, model?: editor.ITextModel) {
         this.html = html;
         this.ruleset = ruleset;
         this.linterResponse = this.lint();
+        this.model = model;
     }
 
     public lint(): Hint[] {
@@ -40,7 +42,12 @@ export class HTMLMonacoMarks {
             startLineNumber: issue.line,
             startColumn: issue.col,
             endLineNumber: issue.line,
-            endColumn: issue.col + issue.evidence.length,
+            endColumn:
+                issue.evidence !== ''
+                    ? issue.col + issue.evidence.length
+                    : this.model !== undefined
+                    ? this.model.getLineLength(issue.line)
+                    : issue.col + 1,
             message: issue.message,
             severity: monaco.MarkerSeverity[capitalize(issue.type) as MarkerSeveritySlug],
         }));

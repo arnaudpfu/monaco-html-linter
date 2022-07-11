@@ -8,18 +8,20 @@ export class HTMLMonacoLinter {
     protected editor: editor.IStandaloneCodeEditor;
     protected monaco: Monaco;
     protected ruleset?: Ruleset;
+    protected model?: editor.ITextModel;
 
-    constructor(editor: editor.IStandaloneCodeEditor, monaco: Monaco, ruleset?: Ruleset) {
+    constructor(editor: editor.IStandaloneCodeEditor, monaco: Monaco, ruleset?: Ruleset, model?: editor.ITextModel) {
         this.editor = editor;
         this.monaco = monaco;
         this.ruleset = ruleset;
+        this.model = model;
     }
 
     public lint() {
         const code = this.editor.getValue();
         const languageID = this.editor.getModel()?.getLanguageId();
         if (languageID === 'html') {
-            const monacoLinter = new HTMLMonacoMarks(code, this.ruleset);
+            const monacoLinter = new HTMLMonacoMarks(code, this.ruleset, this.model);
             const issues = monacoLinter.getEditorMarks(this.monaco);
             const model = this.editor.getModel();
             if (model === null) {
